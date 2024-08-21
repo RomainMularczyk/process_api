@@ -1,6 +1,8 @@
 import re
 from datetime import timedelta
+from fastapi import HTTPException
 from pydantic import BaseModel, field_serializer, field_validator
+
 
 class ProcessSchema(BaseModel):
     id: int
@@ -54,10 +56,11 @@ class ProcessSchema(BaseModel):
                         seconds=int(results.group(4))
                     )
             else:
-                raise ValueError(
+                error_message = (
                     "The time metadata could not be parsed properly" 
                     f" for the process with pid: {cls.id}."
                 )
+                raise HTTPException(status_code=422, detail=error_message)
 
     @field_serializer("time")
     def serialize_time(self, time: timedelta) -> str:

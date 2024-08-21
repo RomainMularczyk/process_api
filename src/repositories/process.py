@@ -66,7 +66,7 @@ def add_process(db: Session, data: ProcessSchema) -> ProcessSchema | None:
 
 def add_processes(db: Session, data: List[ProcessSchema]) -> List[ProcessSchema] | None:
     """
-    Insert the given processes in the database.
+    Remove all existing processes and insert a new batch.
 
     Parameters
     ----------
@@ -86,6 +86,17 @@ def add_processes(db: Session, data: List[ProcessSchema]) -> List[ProcessSchema]
     HTTPException
         If the processes could not be inserted properly in the database.
     """
+    # First, remove all existing data
+    try:
+        db.query(Process).delete()
+        db.commit()
+        logging.info("Database was flushed successfully.")
+    except Exception as e:
+        db.rollback()
+        error_message = f"An error as occurred when flushing the database : {e}" 
+        logging.error(error_message)
+        error(status_code=500, message=error_message)
+
     processes = [
         process.model_dump() for process in data
     ]
