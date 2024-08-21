@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "demo-api"
+version = "0.1.0"
+description = "A demo API application."
+authors = ["Romain Mularczyk <romain.mularczyk@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "demo_api"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = {extras = ["standard"], version = "^0.112.1"}
+sqlalchemy = "^2.0.32"
+python-dotenv = "^1.0.1"
+uvicorn = {extras = ["standard"], version = "^0.30.6"}
+psycopg2-binary = "^2.9.9"
+pytest = "^8.3.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+addopts = [
+  "--import-mode=importlib"
+]
