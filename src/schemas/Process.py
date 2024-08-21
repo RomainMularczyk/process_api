@@ -37,7 +37,7 @@ class ProcessSchema(BaseModel):
         if type(value) is timedelta:
             return value
         else:
-            regex = re.compile(r"^(\d+-)?(\d{1,3}):(\d{2}):(\d{2})$")
+            regex = re.compile(r"^(\d+-)?(\d{1,3}):(\d{2})\.(\d{2})$")
             results = re.search(regex, value)  # type: ignore
             if results:
                 if results.group(1):
