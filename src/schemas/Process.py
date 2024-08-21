@@ -4,7 +4,6 @@ from pydantic import BaseModel, field_serializer, field_validator
 
 class ProcessSchema(BaseModel):
     id: int
-    process: str
     user: str
     cpu: float
     memory: float
@@ -13,6 +12,7 @@ class ProcessSchema(BaseModel):
 
     class Config:
         orm_mode = True
+        from_attributes = True
 
     @field_validator("time", mode="before")
     def validate_time(cls, value: str | timedelta) -> timedelta:

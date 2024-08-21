@@ -33,7 +33,6 @@ def add_process(db: Session, data: ProcessSchema) -> ProcessSchema | None:
     """
     process = Process(
         id=data.id,
-        process=data.process,
         user=data.user,
         cpu=data.cpu,
         memory=data.memory,
