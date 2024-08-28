@@ -31,6 +31,11 @@ The Process Usage API was built using `FastAPI`. Please refer to its official do
 
 In order to serve the API, you can use a Python webserver such as `Uvicorn`. You'll find its official documentation here : https://www.uvicorn.org/.
 
+If you want to serve the API with `Uvicorn`, you can run the following command :
+```
+uvicorn main:app --host 0.0.0.0 --port <port_number>
+```
+
 ### Database
 
 The Process Usage API requires an access to Postgres database (version 16.4) to run properly.
