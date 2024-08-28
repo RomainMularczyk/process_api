@@ -25,6 +25,12 @@ To install the project dependencies, you can refer to the `requirements.txt`and 
 pip install requirements.txt
 ```
 
+### Serve the API
+
+The Process Usage API was built using `FastAPI`. Please refer to its official documentation (https://fastapi.tiangolo.com/) to find additional informations on how to deploy such applications.
+
+In order to serve the API, you can use a Python webserver such as `Uvicorn`. You'll find its official documentation here : https://www.uvicorn.org/.
+
 ### Database
 
 The Process Usage API requires an access to Postgres database (version 16.4) to run properly.
