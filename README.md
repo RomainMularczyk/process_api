@@ -25,6 +25,21 @@ To install the project dependencies, you can refer to the `requirements.txt`and 
 pip install requirements.txt
 ```
 
+### Create the database
+
+Before deploying the Process Usage API, you should create a table in your Postgres database. To do so, you can use the `src/init.sql` file.
+
+If you use Docker, you can add the following line in your `docker-compose.yml` file :
+
+```
+services:
+
+    database:
+        image: postgres:16.4
+        volumes:
+            - "./init.sql:/docker-entrypoint-initdb.d/init.sql"
+```
+
 ### Serve the API
 
 The Process Usage API was built using `FastAPI`. Please refer to its official documentation (https://fastapi.tiangolo.com/) to find additional informations on how to deploy such applications.
